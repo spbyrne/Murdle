@@ -1,8 +1,17 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        geometric: [
+          'Century Gothic',
+          'CenturyGothic',
+          'Geneva',
+          'AppleGothic',
+          'sans-serif',
+        ],
+      },
+    },
   },
   plugins: [],
 }

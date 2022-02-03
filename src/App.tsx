@@ -31,10 +31,6 @@ import './App.css'
 const ALERT_TIME_MS = 2000
 
 function App() {
-  const prefersDarkMode = window.matchMedia(
-    '(prefers-color-scheme: dark)'
-  ).matches
-
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
@@ -43,13 +39,7 @@ function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem('theme')
-      ? localStorage.getItem('theme') === 'dark'
-      : prefersDarkMode
-      ? true
-      : false
-  )
+  const isDarkMode = true
   const [successAlert, setSuccessAlert] = useState('')
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
@@ -75,11 +65,6 @@ function App() {
       document.documentElement.classList.remove('dark')
     }
   }, [isDarkMode])
-
-  const handleDarkMode = (isDark: boolean) => {
-    setIsDarkMode(isDark)
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  }
 
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
@@ -149,13 +134,9 @@ function App() {
   }
 
   return (
-    <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8 mt-12">
+    <div className="fixed bg-[#171313] top-0 left-0 w-screen h-screen mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
+      <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4">
         <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
-        <SunIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
-          onClick={() => handleDarkMode(!isDarkMode)}
-        />
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
@@ -165,7 +146,9 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <Grid guesses={guesses} currentGuess={currentGuess} />
+      <div className="flex-1">
+        <Grid guesses={guesses} currentGuess={currentGuess} />
+      </div>
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
@@ -192,15 +175,6 @@ function App() {
         isOpen={isAboutModalOpen}
         handleClose={() => setIsAboutModalOpen(false)}
       />
-
-      <button
-        type="button"
-        className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
-        onClick={() => setIsAboutModalOpen(true)}
-      >
-        {ABOUT_GAME_MESSAGE}
-      </button>
-
       <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
       <Alert
         message={WORD_NOT_FOUND_MESSAGE}

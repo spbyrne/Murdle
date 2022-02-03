@@ -11,22 +11,18 @@ type Props = {
   onClick: (value: KeyValue) => void
 }
 
-export const Key = ({
-  children,
-  status,
-  width = 40,
-  value,
-  onClick,
-}: Props) => {
+export const Key = ({ children, status, value, onClick }: Props) => {
   const classes = classnames(
-    'flex items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
+    'flex items-center justify-center rounded m-1 font-bold cursor-pointer select-none transition-all ease-out duration-150 p-[1.125rem]',
     {
-      'bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 active:bg-slate-400':
+      'text-lg': value.length < 3,
+      'text-xs': value.length > 2,
+      'bg-zinc-600 text-white hover:text-zinc-50 hover:bg-zinc-700 active:bg-zinc-800':
         !status,
-      'bg-slate-400 text-white': status === 'absent',
-      'bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white':
+      'bg-zinc-800 text-zinc-500': status === 'absent',
+      'bg-green-600 hover:bg-green-700 active:bg-green-800 text-white':
         status === 'correct',
-      'bg-orange-500 hover:bg-orange-600 active:bg-orange-700 dark:bg-orange-700 text-white':
+      'bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-zinc-800':
         status === 'present',
     }
   )
@@ -37,12 +33,8 @@ export const Key = ({
   }
 
   return (
-    <button
-      style={{ width: `${width}px`, height: '58px' }}
-      className={classes}
-      onClick={handleClick}
-    >
-      {children || value}
+    <button className={classes} onClick={handleClick}>
+      {value}
     </button>
   )
 }
