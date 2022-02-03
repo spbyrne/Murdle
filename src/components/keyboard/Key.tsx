@@ -15,7 +15,6 @@ type Props = {
 }
 
 export const Key = ({ children, status, value, onClick }: Props) => {
-  const [hover, setHover] = React.useState(false)
   const classes = classnames(
     'relative flex-1 flex items-center m-1 justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150',
     {
@@ -46,8 +45,6 @@ export const Key = ({ children, status, value, onClick }: Props) => {
     <button
       className={classes}
       onClick={handleClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
       style={{ perspective: '100px' }}
     >
       {status === 'absent' && (
