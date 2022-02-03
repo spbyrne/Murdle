@@ -208,13 +208,13 @@ const Stage = ({ wrongLetters = 0 }) => {
       {/* top  */}
       {wrongLetters > 1 && (
         <div
-          className="absolute origin-top-left left-[36%] top-[7%] -rotate-90 w-[2.5%] h-0 bg-zinc-700 z-10"
+          className="absolute origin-top-left left-[36%] top-[7%] -rotate-90 w-[2.5%] h-0 bg-zinc-700 z-20"
           style={{ paddingBottom: '17%' }}
         ></div>
       )}
       {/* noose */}
       {wrongLetters > 2 && (
-        <div className="absolute top-0 left-[50%] w-full h-full origin-top">
+        <div className="absolute top-0 left-[50%] w-full h-full origin-top z-10">
           <div
             className="absolute top-0 left-0 w-[1.5%] -translate-x-1/2 h-0 bg-zinc-600"
             style={{ paddingBottom: '7%' }}
@@ -228,7 +228,7 @@ const Stage = ({ wrongLetters = 0 }) => {
       {/* head */}
       {wrongLetters > 3 && (
         <div
-          className="absolute overflow-hidden top-[14%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-500 z-10"
+          className="absolute overflow-hidden top-[14%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-500 z-20"
           style={{ paddingBottom: '7%' }}
         >
           <AiOutlineFrown className="w-[140%] h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-zinc-600" />
@@ -239,6 +239,34 @@ const Stage = ({ wrongLetters = 0 }) => {
         <div
           className="absolute overflow-hidden top-[30%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
           style={{ paddingBottom: '10%' }}
+        ></div>
+      )}
+      {/* left arm */}
+      {wrongLetters > 5 && (
+        <div
+          className="absolute origin-top-right overflow-hidden top-[32%] left-[48%] w-[2.5%] rotate-[35deg] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
+          style={{ paddingBottom: '9%' }}
+        ></div>
+      )}
+      {/* right arm */}
+      {wrongLetters > 6 && (
+        <div
+          className="absolute origin-top-left overflow-hidden top-[32%] left-[52%] w-[2.5%] -rotate-[35deg] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
+          style={{ paddingBottom: '9%' }}
+        ></div>
+      )}
+      {/* left leg */}
+      {wrongLetters > 7 && (
+        <div
+          className="absolute origin-top-right overflow-hidden top-[57%] left-[49%] w-[3.25%] rotate-[25deg] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
+          style={{ paddingBottom: '9%' }}
+        ></div>
+      )}
+      {/* right leg */}
+      {wrongLetters > 8 && (
+        <div
+          className="absolute origin-top-left overflow-hidden top-[57%] left-[51%] w-[3.25%] -rotate-[25deg] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
+          style={{ paddingBottom: '9%' }}
         ></div>
       )}
     </div>

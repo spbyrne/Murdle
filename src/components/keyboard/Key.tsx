@@ -13,7 +13,7 @@ type Props = {
 
 export const Key = ({ children, status, value, onClick }: Props) => {
   const classes = classnames(
-    'flex-1 flex items-center justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150 px-2.5 py-1.5 sm:py-2 sm:px-3 lg:px-[1.125rem] lg:py-[1rem]',
+    'flex-1 flex items-center justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150 px-2 py-1.5 sm:py-2 sm:px-3 lg:px-[1.125rem] lg:py-[1rem]',
     {
       'text-sm sm:text-lg': value.length < 3,
       'text-[10px] sm:text-xs': value.length > 2,
@@ -34,7 +34,10 @@ export const Key = ({ children, status, value, onClick }: Props) => {
   }
 
   return (
-    <div className="p-1 flex items-stretch" style={{ perspective: '100px' }}>
+    <div
+      className="p-[2px] sm:p-1 flex items-stretch"
+      style={{ perspective: '100px' }}
+    >
       <button
         className={classes}
         onClick={handleClick}
