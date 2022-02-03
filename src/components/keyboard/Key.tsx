@@ -13,13 +13,14 @@ type Props = {
 
 export const Key = ({ children, status, value, onClick }: Props) => {
   const classes = classnames(
-    'flex items-center justify-center rounded m-1 font-bold cursor-pointer select-none transition-all ease-out duration-150 p-[1.125rem]',
+    'flex-1 flex items-center justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150 py-2 px-3 lg:px-[1.125rem] lg:py-[1rem]',
     {
       'text-lg': value.length < 3,
       'text-xs': value.length > 2,
       'bg-zinc-600 text-white hover:text-zinc-50 hover:bg-zinc-700 active:bg-zinc-800':
         !status,
-      'bg-zinc-800 text-zinc-500': status === 'absent',
+      'bg-gradient-to-t from-zinc-800 to-zinc-900 text-zinc-600':
+        status === 'absent',
       'bg-green-600 hover:bg-green-700 active:bg-green-800 text-white':
         status === 'correct',
       'bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-zinc-800':
@@ -33,8 +34,16 @@ export const Key = ({ children, status, value, onClick }: Props) => {
   }
 
   return (
-    <button className={classes} onClick={handleClick}>
-      {value}
-    </button>
+    <div className="p-1 flex items-stretch" style={{ perspective: '100px' }}>
+      <button
+        className={classes}
+        onClick={handleClick}
+        style={{
+          transform: status === 'absent' ? 'rotate3d(1,0,0,45deg)' : 'none',
+        }}
+      >
+        {value}
+      </button>
+    </div>
   )
 }

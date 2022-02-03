@@ -12,9 +12,9 @@ export const Cell = ({ value, status }: Props) => {
     {
       'bg-zinc-800/50': !status && !value,
       'bg-zinc-800': value && !status,
-      'bg-zinc-700 text-white': status === 'absent',
+      'bg-zinc-700 text-zinc-400': status === 'absent',
       'bg-green-600 text-white': status === 'correct',
-      'bg-amber-500 text-white': status === 'present',
+      'bg-amber-400 text-zinc-700': status === 'present',
       'cell-animation': !!value,
     }
   )

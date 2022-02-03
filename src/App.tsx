@@ -20,6 +20,7 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
+import { FaSkull } from 'react-icons/fa'
 
 import './App.css'
 
@@ -131,15 +132,16 @@ function App() {
   return (
     <div className="fixed bg-[#171313] top-0 left-0 w-screen h-screen mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
       <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4">
-        <h1 className="text-xl grow font-bold text-gray-400 tracking-widest">
+        <FaSkull className="text-gray-400 w-6 h-6 mr-2" />
+        <h1 className="text-xl grow font-bold text-gray-600 tracking-widest">
           {GAME_TITLE}
         </h1>
         <InformationCircleIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 cursor-pointer stroke-white opacity-50 hover:opacity-100 transition ease-out duration-150"
           onClick={() => setIsInfoModalOpen(true)}
         />
         <ChartBarIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 cursor-pointer stroke-white opacity-50 hover:opacity-100 transition ease-out duration-150"
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
