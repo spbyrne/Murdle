@@ -5,9 +5,10 @@ import { EmptyRow } from './EmptyRow'
 type Props = {
   guesses: string[]
   currentGuess: string
+  dead?: boolean
 }
 
-export const Grid = ({ guesses, currentGuess }: Props) => {
+export const Grid = ({ dead = false, guesses, currentGuess }: Props) => {
   const empties =
     guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
 
@@ -16,9 +17,9 @@ export const Grid = ({ guesses, currentGuess }: Props) => {
       {guesses.map((guess, i) => (
         <CompletedRow key={i} guess={guess} />
       ))}
-      {guesses.length < 6 && <CurrentRow guess={currentGuess} />}
+      {guesses.length < 6 && <CurrentRow dead={dead} guess={currentGuess} />}
       {empties.map((_, i) => (
-        <EmptyRow key={i} />
+        <EmptyRow dead={dead} key={i} />
       ))}
     </div>
   )

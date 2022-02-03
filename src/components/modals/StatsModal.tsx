@@ -54,8 +54,8 @@ export const StatsModal = ({
       </h4>
       <Histogram gameStats={gameStats} />
       {(isGameLost || isGameWon) && (
-        <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
-          <div>
+        <div className="mt-5 sm:mt-6 flex gap-6 justify-between items-center dark:text-white">
+          <div className="flex-1 whitespace-nowrap">
             <h5>{NEW_WORD_TEXT}</h5>
             <Countdown
               className="text-lg font-medium text-zinc-900 dark:text-zinc-100"
@@ -65,7 +65,7 @@ export const StatsModal = ({
           </div>
           <button
             type="button"
-            className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+            className="w-full rounded-md border border-transparent shadow-sm px-4 py-3 bg-rose-700 text-base font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 sm:text-sm"
             onClick={() => {
               shareStatus(guesses, isGameLost)
               handleShare()

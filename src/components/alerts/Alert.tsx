@@ -10,7 +10,7 @@ type Props = {
 
 export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
   const classes = classNames(
-    'fixed top-5 z-[1000] left-1/2 transform -translate-x-1/2 max-w-sm w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden',
+    'fixed bottom-0 z-[1000] left-1/2 transform -translate-x-1/2 max-w-sm w-full shadow-lg rounded-t-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden',
     {
       'bg-rose-800': variant === 'warning',
       'bg-green-700': variant === 'success',
@@ -30,7 +30,7 @@ export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
     >
       <div className={classes}>
         <div className="p-4">
-          <p className="text-lg text-center font-bold text-zinc-200">
+          <p className="text-lg md:text-xl text-center font-bold text-zinc-200">
             {message}
           </p>
         </div>

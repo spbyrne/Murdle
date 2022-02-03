@@ -25,7 +25,7 @@ import { AiOutlineFrown } from 'react-icons/ai'
 
 import './App.css'
 
-const ALERT_TIME_MS = 2000
+const ALERT_TIME_MS = 3000
 
 function App() {
   const [currentGuess, setCurrentGuess] = useState('')
@@ -56,18 +56,6 @@ function App() {
   const [stats, setStats] = useState(() => loadStats())
 
   useEffect(() => {
-    const numberOfWrongLetters = guesses
-      .join('')
-      .split('')
-      .filter((word) => !solution.includes(word))
-      .filter(function (item, pos, self) {
-        return self.indexOf(item) === pos
-      })
-      .join('')
-    setWrongLetters(numberOfWrongLetters.length)
-  }, [guesses])
-
-  useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
 
@@ -89,7 +77,12 @@ function App() {
   }, [isGameWon, isGameLost])
 
   const onChar = (value: string) => {
-    if (currentGuess.length < 5 && guesses.length < 6 && !isGameWon) {
+    if (
+      wrongLetters < 9 &&
+      currentGuess.length < 5 &&
+      guesses.length < 6 &&
+      !isGameWon
+    ) {
       setCurrentGuess(`${currentGuess}${value}`)
     }
   }
@@ -99,7 +92,7 @@ function App() {
   }
 
   const onEnter = () => {
-    if (isGameWon || isGameLost) {
+    if (wrongLetters > 8 || isGameWon || isGameLost) {
       return
     }
     if (!(currentGuess.length === 5)) {
@@ -123,12 +116,22 @@ function App() {
       setCurrentGuess('')
 
       if (winningWord) {
-        setStats(addStatsForCompletedGame(stats, guesses.length))
+        setStats(addStatsForCompletedGame(stats, false, guesses.length))
         return setIsGameWon(true)
       }
 
-      if (guesses.length === 5) {
-        setStats(addStatsForCompletedGame(stats, guesses.length + 1))
+      const numberOfWrongLetters = [...guesses, currentGuess]
+        .join('')
+        .split('')
+        .filter((word) => !solution.includes(word))
+        .filter(function (item, pos, self) {
+          return self.indexOf(item) === pos
+        })
+        .join('')
+      setWrongLetters(numberOfWrongLetters.length)
+
+      if (guesses.length === 5 || numberOfWrongLetters.length > 8) {
+        setStats(addStatsForCompletedGame(stats, true, guesses.length + 1))
         setIsGameLost(true)
       }
     }
@@ -161,13 +164,18 @@ function App() {
       </div>
       <div className="flex-1">
         <Stage wrongLetters={wrongLetters} />
-        <Grid guesses={guesses} currentGuess={currentGuess} />
+        <Grid
+          dead={wrongLetters > 8}
+          guesses={guesses}
+          currentGuess={currentGuess}
+        />
       </div>
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
+        hide={isGameLost || isGameWon}
       />
       <InfoModal
         isOpen={isInfoModalOpen}
@@ -214,7 +222,7 @@ const Stage = ({ wrongLetters = 0 }) => {
           (displayedWrongLetters) => displayedWrongLetters + 1
         )
       }
-    }, 750)
+    }, 500)
     return () => clearInterval(animateInterval)
   }, [wrongLetters, displayedWrongLetters])
 

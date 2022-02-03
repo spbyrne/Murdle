@@ -9,6 +9,7 @@ type Props = {
   onDelete: () => void
   onEnter: () => void
   guesses: string[]
+  hide: boolean
 }
 
 const Keyrow = ({
@@ -25,7 +26,13 @@ const Keyrow = ({
   )
 }
 
-export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
+export const Keyboard = ({
+  onChar,
+  onDelete,
+  onEnter,
+  guesses,
+  hide = false,
+}: Props) => {
   const charStatuses = getStatuses(guesses)
 
   const onClick = (value: KeyValue) => {
@@ -58,7 +65,11 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
   }, [onEnter, onDelete, onChar])
 
   return (
-    <div className="w-full max-w-prose mx-auto flex flex-col px-1 py-2 sm:p-2 md:p-4">
+    <div
+      className={`w-full max-w-prose mx-auto flex flex-col px-1 py-2 sm:p-2 md:p-4 transition-all ease-in-out duration-300 ${
+        hide ? 'translate-y-1/4 opacity-0' : ''
+      }`}
+    >
       <Keyrow>
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} />
         <Key value="W" onClick={onClick} status={charStatuses['W']} />

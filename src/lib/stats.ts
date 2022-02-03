@@ -8,6 +8,7 @@ import {
 
 export const addStatsForCompletedGame = (
   gameStats: GameStats,
+  lost: boolean,
   count: number
 ) => {
   // Count is number of incorrect guesses before end.
@@ -15,7 +16,7 @@ export const addStatsForCompletedGame = (
 
   stats.totalGames += 1
 
-  if (count > 5) {
+  if (count > 5 || lost) {
     // A fail situation
     stats.currentStreak = 0
     stats.gamesFailed += 1
