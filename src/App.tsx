@@ -228,11 +228,18 @@ const Stage = ({ wrongLetters = 0 }) => {
       {/* head */}
       {wrongLetters > 3 && (
         <div
-          className="absolute overflow-hidden top-[14%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-500"
+          className="absolute overflow-hidden top-[14%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-500 z-10"
           style={{ paddingBottom: '7%' }}
         >
           <AiOutlineFrown className="w-[140%] h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-zinc-600" />
         </div>
+      )}
+      {/* body */}
+      {wrongLetters > 4 && (
+        <div
+          className="absolute overflow-hidden top-[30%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-700"
+          style={{ paddingBottom: '10%' }}
+        ></div>
       )}
     </div>
   )
