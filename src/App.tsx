@@ -1,8 +1,4 @@
-import {
-  InformationCircleIcon,
-  ChartBarIcon,
-  SunIcon,
-} from '@heroicons/react/outline'
+import { InformationCircleIcon, ChartBarIcon } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
@@ -14,7 +10,6 @@ import {
   GAME_TITLE,
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
-  ABOUT_GAME_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
@@ -136,7 +131,9 @@ function App() {
   return (
     <div className="fixed bg-[#171313] top-0 left-0 w-screen h-screen mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
       <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4">
-        <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
+        <h1 className="text-xl grow font-bold text-gray-400 tracking-widest">
+          {GAME_TITLE}
+        </h1>
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
