@@ -135,7 +135,7 @@ function App() {
   }
 
   return (
-    <div className="fixed overflow-y-auto bg-[#171313] top-0 left-0 w-screen h-screen mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
+    <div className="fixed overflow-y-auto bg-[#171313] top-0 left-0 w-full h-full mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
       <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4 -mb-6">
         <FaSkull className="text-gray-400 w-6 h-6 mr-2" />
         <h1 className="text-xl grow font-bold text-gray-600 tracking-widest">
