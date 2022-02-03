@@ -1,4 +1,4 @@
-import { InformationCircleIcon, ChartBarIcon } from '@heroicons/react/outline'
+import { RiBarChart2Fill } from 'react-icons/ri'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
@@ -20,7 +20,7 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
-import { FaSkull } from 'react-icons/fa'
+import { FaInfoCircle, FaSkull } from 'react-icons/fa'
 import { AiOutlineFrown } from 'react-icons/ai'
 
 import './App.css'
@@ -136,19 +136,28 @@ function App() {
 
   return (
     <div className="fixed overflow-y-auto bg-[#171313] top-0 left-0 w-full h-full mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
-      <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4 -mb-6">
-        <FaSkull className="text-gray-400 w-6 h-6 mr-2" />
-        <h1 className="text-xl grow font-bold text-gray-600 tracking-widest">
-          {GAME_TITLE}
-        </h1>
-        <InformationCircleIcon
-          className="h-6 w-6 cursor-pointer stroke-white opacity-50 hover:opacity-100 transition ease-out duration-150"
+      <div className="flex-grow-0 flex gap-2 w-full max-w-prose mx-auto items-center p-4 -mb-6">
+        <button
+          className="bg-transparent cursor-pointer border-0 outline-none flex-1 flex items-center opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
+          onClick={() => setIsAboutModalOpen(true)}
+        >
+          <FaSkull className="text-zinc-200 w-6 h-6 mr-1.5" />
+          <h1 className="text-base font-bold text-zinc-400 tracking-widest">
+            {GAME_TITLE}
+          </h1>
+        </button>
+        <button
+          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
           onClick={() => setIsInfoModalOpen(true)}
-        />
-        <ChartBarIcon
-          className="h-6 w-6 cursor-pointer stroke-white opacity-50 hover:opacity-100 transition ease-out duration-150"
+        >
+          <FaInfoCircle className="h-6 w-6 text-zinc-400" />
+        </button>
+        <button
+          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
           onClick={() => setIsStatsModalOpen(true)}
-        />
+        >
+          <RiBarChart2Fill className="h-6 w-6 text-zinc-400" />
+        </button>
       </div>
       <div className="flex-1">
         <Stage wrongLetters={wrongLetters} />

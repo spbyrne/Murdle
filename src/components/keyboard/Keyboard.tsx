@@ -11,6 +11,20 @@ type Props = {
   guesses: string[]
 }
 
+const Keyrow = ({
+  children,
+  padding = '',
+}: {
+  children?: any
+  padding?: string
+}) => {
+  return (
+    <div className={`flex justify-center items-stretch ${padding}`}>
+      {children}
+    </div>
+  )
+}
+
 export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
   const charStatuses = getStatuses(guesses)
 
@@ -44,8 +58,8 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
   }, [onEnter, onDelete, onChar])
 
   return (
-    <div className="m-4 sm:m-6">
-      <div className="flex justify-center items-stretch">
+    <div className="w-full max-w-prose mx-auto flex flex-col p-2 md:p-4">
+      <Keyrow>
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} />
         <Key value="W" onClick={onClick} status={charStatuses['W']} />
         <Key value="E" onClick={onClick} status={charStatuses['E']} />
@@ -56,8 +70,8 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="I" onClick={onClick} status={charStatuses['I']} />
         <Key value="O" onClick={onClick} status={charStatuses['O']} />
         <Key value="P" onClick={onClick} status={charStatuses['P']} />
-      </div>
-      <div className="flex justify-center items-stretch">
+      </Keyrow>
+      <Keyrow padding="px-[5%]">
         <Key value="A" onClick={onClick} status={charStatuses['A']} />
         <Key value="S" onClick={onClick} status={charStatuses['S']} />
         <Key value="D" onClick={onClick} status={charStatuses['D']} />
@@ -67,8 +81,8 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="J" onClick={onClick} status={charStatuses['J']} />
         <Key value="K" onClick={onClick} status={charStatuses['K']} />
         <Key value="L" onClick={onClick} status={charStatuses['L']} />
-      </div>
-      <div className="flex justify-center items-stretch">
+      </Keyrow>
+      <Keyrow padding="px-[1%]">
         <Key value="ENTER" onClick={onClick}>
           {ENTER_TEXT}
         </Key>
@@ -82,7 +96,7 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="DELETE" onClick={onClick}>
           {DELETE_TEXT}
         </Key>
-      </div>
+      </Keyrow>
     </div>
   )
 }
