@@ -36,7 +36,6 @@ function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
-  const isDarkMode = true
   const [wrongLetters, setWrongLetters] = useState(0)
   const [successAlert, setSuccessAlert] = useState('')
   const [guesses, setGuesses] = useState<string[]>(() => {
@@ -62,7 +61,7 @@ function App() {
       .split('')
       .filter((word) => !solution.includes(word))
       .filter(function (item, pos, self) {
-        return self.indexOf(item) == pos
+        return self.indexOf(item) === pos
       })
       .join('')
     setWrongLetters(numberOfWrongLetters.length)
@@ -229,8 +228,8 @@ const Stage = ({ wrongLetters = 0 }) => {
       {/* head */}
       {wrongLetters > 3 && (
         <div
-          className="absolute overflow-hidden top-[11%] left-[50%] w-[9%] -translate-x-1/2 h-0 rounded-full bg-zinc-500"
-          style={{ paddingBottom: '8%' }}
+          className="absolute overflow-hidden top-[14%] left-[50%] w-[7%] -translate-x-1/2 h-0 rounded-full bg-zinc-500"
+          style={{ paddingBottom: '7%' }}
         >
           <AiOutlineFrown className="w-[140%] h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-zinc-600" />
         </div>
