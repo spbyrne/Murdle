@@ -6,15 +6,17 @@ type Props = {
 
 export const Progress = ({ index, size, label }: Props) => {
   return (
-    <div className="flex justify-left m-1">
+    <div className="flex gap-2 justify-left m-1 w-full">
       <div className="items-center justify-center w-2">{index + 1}</div>
-      <div className="rounded-full w-full ml-2">
-        <div
-          style={{ width: `${5 + size}%` }}
-          className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 rounded-l-full"
-        >
+      <div
+        style={{ width: `${5 + size}%` }}
+        className={`${
+          size > 0 ? `bg-green-600` : `bg-zinc-800`
+        } relative text-xs font-medium text-green-100 px-2 py-0.5 rounded-full`}
+      >
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {label}
-        </div>
+        </span>
       </div>
     </div>
   )
