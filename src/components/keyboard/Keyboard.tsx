@@ -10,6 +10,7 @@ type Props = {
   onEnter: () => void
   guesses: string[]
   hide: boolean
+  wrongLetters?: string[] | undefined
 }
 
 const Keyrow = ({
@@ -31,6 +32,7 @@ export const Keyboard = ({
   onDelete,
   onEnter,
   guesses,
+  wrongLetters,
   hide = false,
 }: Props) => {
   const charStatuses = getStatuses(guesses)
@@ -64,11 +66,22 @@ export const Keyboard = ({
     }
   }, [onEnter, onDelete, onChar])
 
+  if (hide) {
+    return (
+      <div className={`w-full max-w-prose mx-auto flex flex-col px-2 py-20`}>
+        <Keyrow>
+          {wrongLetters &&
+            wrongLetters.map((letter) => {
+              return <Key value={letter} status="absent" />
+            })}
+        </Keyrow>
+      </div>
+    )
+  }
+
   return (
     <div
-      className={`w-full max-w-prose mx-auto flex flex-col px-1 py-2 sm:p-2 md:p-4 transition-all ease-in-out duration-300 ${
-        hide ? 'translate-y-1/4 opacity-0' : ''
-      }`}
+      className={`w-full max-w-prose mx-auto flex flex-col px-1 py-2 sm:p-2 md:p-4`}
     >
       <Keyrow>
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} />

@@ -8,13 +8,13 @@ import { FaSkullCrossbones } from 'react-icons/fa'
 
 type Props = {
   children?: React.ReactNode
-  value: KeyValue
+  value: KeyValue | any
   width?: number
   status?: CharStatus
-  onClick: (value: KeyValue) => void
+  onClick?: (value: KeyValue) => void
 }
 
-export const Key = ({ children, status, value, onClick }: Props) => {
+export const Key = ({ children, status, value, onClick = () => {} }: Props) => {
   const classes = classnames(
     'relative flex-1 flex items-center m-[2px] sm:m-1 justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150',
     {

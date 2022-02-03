@@ -57,7 +57,22 @@ function App() {
 
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
+    const numberOfWrongLetters = guesses
+      .join('')
+      .split('')
+      .filter((word) => !solution.includes(word))
+      .filter(function (item, pos, self) {
+        return self.indexOf(item) === pos
+      })
+      .join('').length
+    setWrongLetters(numberOfWrongLetters)
   }, [guesses])
+
+  useEffect(() => {
+    if (wrongLetters > 8) {
+      setIsGameLost(true)
+    }
+  }, [wrongLetters])
 
   useEffect(() => {
     if (isGameWon) {
@@ -67,12 +82,12 @@ function App() {
       setTimeout(() => {
         setSuccessAlert('')
         setIsStatsModalOpen(true)
-      }, ALERT_TIME_MS)
+      }, ALERT_TIME_MS * 2)
     }
     if (isGameLost) {
       setTimeout(() => {
         setIsStatsModalOpen(true)
-      }, ALERT_TIME_MS)
+      }, ALERT_TIME_MS * 2)
     }
   }, [isGameWon, isGameLost])
 
@@ -127,10 +142,9 @@ function App() {
         .filter(function (item, pos, self) {
           return self.indexOf(item) === pos
         })
-        .join('')
-      setWrongLetters(numberOfWrongLetters.length)
+        .join('').length
 
-      if (guesses.length === 5 || numberOfWrongLetters.length > 8) {
+      if (guesses.length === 5 || numberOfWrongLetters > 8) {
         setStats(addStatsForCompletedGame(stats, true, guesses.length + 1))
         setIsGameLost(true)
       }
@@ -175,6 +189,13 @@ function App() {
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
+        wrongLetters={guesses
+          .join('')
+          .split('')
+          .filter((word) => !solution.includes(word))
+          .filter(function (item, pos, self) {
+            return self.indexOf(item) === pos
+          })}
         hide={isGameLost || isGameWon}
       />
       <InfoModal
