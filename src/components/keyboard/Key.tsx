@@ -16,7 +16,7 @@ type Props = {
 
 export const Key = ({ children, status, value, onClick }: Props) => {
   const classes = classnames(
-    'relative flex-1 flex items-center m-1 justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150',
+    'relative flex-1 flex items-center m-[2px] sm:m-1 justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150',
     {
       'text-sm sm:text-lg aspect-key w-full': value.length === 1,
       'text-[10px] sm:text-xs px-[2%] w-full': value.length > 1,
