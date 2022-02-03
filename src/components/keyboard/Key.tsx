@@ -13,10 +13,10 @@ type Props = {
 
 export const Key = ({ children, status, value, onClick }: Props) => {
   const classes = classnames(
-    'flex-1 flex items-center justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150 py-2 px-3 lg:px-[1.125rem] lg:py-[1rem]',
+    'flex-1 flex items-center justify-center rounded font-bold cursor-pointer select-none origin-bottom hover:scale-105 transition-all ease-out duration-150 px-2.5 py-1.5 sm:py-2 sm:px-3 lg:px-[1.125rem] lg:py-[1rem]',
     {
-      'text-lg': value.length < 3,
-      'text-xs': value.length > 2,
+      'text-sm sm:text-lg': value.length < 3,
+      'text-[10px] sm:text-xs': value.length > 2,
       'bg-zinc-600 text-white hover:text-zinc-50 hover:bg-zinc-700 active:bg-zinc-800':
         !status,
       'bg-gradient-to-t from-zinc-800 to-zinc-900 text-zinc-600':

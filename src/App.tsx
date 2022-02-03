@@ -21,6 +21,7 @@ import {
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
 import { FaSkull } from 'react-icons/fa'
+import { AiOutlineFrown } from 'react-icons/ai'
 
 import './App.css'
 
@@ -36,6 +37,7 @@ function App() {
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const isDarkMode = true
+  const [wrongLetters, setWrongLetters] = useState(0)
   const [successAlert, setSuccessAlert] = useState('')
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
@@ -55,12 +57,16 @@ function App() {
   const [stats, setStats] = useState(() => loadStats())
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [isDarkMode])
+    const numberOfWrongLetters = guesses
+      .join('')
+      .split('')
+      .filter((word) => !solution.includes(word))
+      .filter(function (item, pos, self) {
+        return self.indexOf(item) == pos
+      })
+      .join('')
+    setWrongLetters(numberOfWrongLetters.length)
+  }, [guesses])
 
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
@@ -131,7 +137,7 @@ function App() {
 
   return (
     <div className="fixed bg-[#171313] top-0 left-0 w-screen h-screen mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
-      <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4">
+      <div className="flex-grow-0 flex gap-1 w-full max-w-prose mx-auto items-center p-4 -mb-6">
         <FaSkull className="text-gray-400 w-6 h-6 mr-2" />
         <h1 className="text-xl grow font-bold text-gray-600 tracking-widest">
           {GAME_TITLE}
@@ -146,6 +152,7 @@ function App() {
         />
       </div>
       <div className="flex-1">
+        <Stage wrongLetters={wrongLetters} />
         <Grid guesses={guesses} currentGuess={currentGuess} />
       </div>
       <Keyboard
@@ -185,6 +192,49 @@ function App() {
         isOpen={successAlert !== ''}
         variant="success"
       />
+    </div>
+  )
+}
+
+const Stage = ({ wrongLetters = 0 }) => {
+  return (
+    <div className="relative w-[80%] max-w-sm mx-auto p-1 pointer-events-none">
+      {/* post */}
+      <div
+        className={`relative left-[36%] w-[2.5%] h-0 bg-zinc-700 ${
+          wrongLetters > 0 ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ paddingBottom: '30%' }}
+      ></div>
+      {/* top  */}
+      {wrongLetters > 1 && (
+        <div
+          className="absolute origin-top-left left-[36%] top-[7%] -rotate-90 w-[2.5%] h-0 bg-zinc-700 z-10"
+          style={{ paddingBottom: '17%' }}
+        ></div>
+      )}
+      {/* noose */}
+      {wrongLetters > 2 && (
+        <div className="absolute top-0 left-[50%] w-full h-full origin-top">
+          <div
+            className="absolute top-0 left-0 w-[1.5%] -translate-x-1/2 h-0 bg-zinc-600"
+            style={{ paddingBottom: '7%' }}
+          ></div>
+          <div
+            className="absolute top-[20%] left-0 w-[6%] -translate-x-1/2 h-0 rounded-full border-4 border-zinc-600 bg-zinc-900"
+            style={{ paddingBottom: '4%' }}
+          ></div>
+        </div>
+      )}
+      {/* head */}
+      {wrongLetters > 3 && (
+        <div
+          className="absolute overflow-hidden top-[11%] left-[50%] w-[9%] -translate-x-1/2 h-0 rounded-full bg-zinc-500"
+          style={{ paddingBottom: '8%' }}
+        >
+          <AiOutlineFrown className="w-[140%] h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-zinc-600" />
+        </div>
+      )}
     </div>
   )
 }
