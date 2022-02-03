@@ -12,7 +12,7 @@ export const Cell = ({ dead = false, value, status }: Props) => {
     'w-full aspect-square flex-1 flex items-center justify-center m-[3px] sm:m-1 text-2xl sm:text-3xl font-bold rounded text-white',
     {
       'bg-rose-700': dead,
-      'bg-zinc-800/30': !dead && !status && !value,
+      'bg-zinc-800': !dead && !status && !value,
       'bg-zinc-700 text-zinc-50': !dead && value && !status,
       'bg-zinc-800 text-zinc-500': !dead && status === 'absent',
       'bg-green-600 text-white': !dead && status === 'correct',
