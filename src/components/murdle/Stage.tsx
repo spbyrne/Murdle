@@ -3,6 +3,11 @@ import * as React from 'react'
 export const Stage = ({ wrongLetters = '' }) => {
   const [displayedWrongLetters, setDisplayedWrongLetters] = React.useState(0)
 
+  const [displaySpeech, setDisplaySpeech] = React.useState(false)
+  const speechText = React.useMemo(() => {
+    return randomFromArray(['Oh No', 'Uh oh', 'Shoot', 'Darn'])
+  }, [])
+
   React.useEffect(() => {
     let animateInterval = setInterval(() => {
       if (wrongLetters.length > displayedWrongLetters) {
@@ -13,6 +18,17 @@ export const Stage = ({ wrongLetters = '' }) => {
     }, 500)
     return () => clearInterval(animateInterval)
   }, [wrongLetters, displayedWrongLetters])
+
+  React.useEffect(() => {
+    if (displayedWrongLetters > order.head + 1) {
+      setTimeout(() => {
+        setDisplaySpeech(true)
+        setTimeout(() => {
+          setDisplaySpeech(false)
+        }, 4000)
+      }, Math.random() * 5000)
+    }
+  }, [displayedWrongLetters])
 
   const transition = 'transition-all ease-out duration-[500ms]'
   const order = {
@@ -32,7 +48,7 @@ export const Stage = ({ wrongLetters = '' }) => {
   return (
     <div className="sticky top-4 grow-0 shrink-0 w-[40%] max-w-[12rem] mx-auto p-1 mb-2 pointer-events-none">
       <svg
-        className="w-full h-auto"
+        className="w-full h-auto overflow-visible"
         viewBox="0 0 160 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +286,7 @@ export const Stage = ({ wrongLetters = '' }) => {
           }`}
         >
           <path
-            d="M136 54.5C136.5 66 130.508 71 122.5 71C114.492 71 108.5 65.5 109 54.5C109.5 43.5 114.492 38 122.5 38C130.508 38 135.5 43 136 54.5Z"
+            d="M136.969 54.5C137.505 66 131.083 71 122.5 71C113.917 71 107.495 65.5 108.031 54.5C108.567 43.5 113.917 38 122.5 38C131.083 38 136.433 43 136.969 54.5Z"
             fill="#717179"
           />
           <g
@@ -279,16 +295,12 @@ export const Stage = ({ wrongLetters = '' }) => {
               displayedWrongLetters > order.dead ? 'opacity-0' : 'opacity-100'
             }`}
           >
-            <rect
-              x="116.895"
-              y="60.7047"
-              width="12.0675"
-              height="2.11081"
-              transform="rotate(-7.5522 116.895 60.7047)"
+            <path
+              d="M116.493 60.7047L116.831 60.6222C120.903 59.6298 125.147 59.4586 129.314 60.1187V60.1187L129.612 62.2112V62.2112C125.346 61.5512 120.95 61.7596 116.79 62.7972V62.7972L116.493 60.7047Z"
               fill="#5A5A5D"
             />
-            <circle cx="126.75" cy="50.75" r="1.75" fill="#3F3F45" />
-            <circle cx="118" cy="51" r="2" fill="#3F3F45" />
+            <circle cx="127" cy="51" r="2" fill="#3F3F45" />
+            <circle cx="117.5" cy="51.5" r="2.5" fill="#3F3F45" />
           </g>
           <g
             id="dead-face"
@@ -297,44 +309,74 @@ export const Stage = ({ wrongLetters = '' }) => {
             }`}
           >
             <path
-              d="M116.895 60.7047L117.144 60.6302C120.94 59.4921 124.897 58.9816 128.858 59.1187V59.1187L129.135 61.2112V61.2112C125.174 61.0741 121.218 61.5846 117.421 62.7227L117.173 62.7972L116.895 60.7047Z"
+              d="M116.493 61.7047L117.781 60.6988C121.082 58.1198 125.684 57.8883 129.314 60.1187V60.1187L129.612 62.2112V62.2112C125.982 59.9808 121.38 60.2123 118.078 62.7913L116.79 63.7972L116.493 61.7047Z"
               fill="#5A5A5D"
             />
             <rect
-              x="115.598"
-              y="50.5953"
-              width="4.93513"
-              height="1.31998"
-              transform="rotate(-7.5522 115.598 50.5953)"
+              width="8.40461"
+              height="2.10248"
+              transform="matrix(0.992436 -0.122767 0.14068 0.990055 113.499 50.4005)"
               fill="#3F3F45"
             />
             <rect
-              x="118.791"
-              y="48.4577"
-              width="4.93513"
-              height="1.31998"
-              transform="rotate(90 118.791 48.4577)"
+              x="118.749"
+              y="47"
+              width="8"
+              height="2.14352"
+              transform="rotate(90 118.749 47)"
               fill="#3F3F45"
             />
             <rect
-              x="124.669"
-              y="50.5599"
-              width="4.26032"
-              height="1.31998"
-              transform="rotate(-7.5522 124.669 50.5599)"
+              width="6.49907"
+              height="1.88331"
+              transform="matrix(0.992436 -0.122767 0.14068 0.990055 123.823 50.4009)"
               fill="#3F3F45"
             />
             <rect
-              x="126.781"
-              y="53.1626"
-              width="4.26032"
-              height="1.31998"
-              transform="rotate(-105 126.781 53.1626)"
+              width="6.10087"
+              height="2.00711"
+              transform="matrix(-0.276021 -0.961152 0.970141 -0.242543 127.049 54.1096)"
               fill="#3F3F45"
             />
           </g>
         </g>
+        <g
+          id="speech-bubble"
+          className={`origin-center ${transition} ${
+            displayedWrongLetters > order.dead
+              ? 'opacity-0'
+              : displaySpeech
+              ? 'opacity-100'
+              : 'opacity-0 -translate-x-[6%] scale-90 -translate-y-[1%] rotate-[5deg]'
+          }`}
+        >
+          <path d="M151.5 46.5L144.5 57L158.5 55L151.5 46.5Z" fill="#a1a1aa" />
+          <ellipse
+            cx="168.5"
+            cy="46.0061"
+            rx="19.5"
+            ry="12.5"
+            transform="rotate(2.88601 168.5 46.0061)"
+            fill="#a1a1aa"
+          />
+          <text
+            x="154"
+            y="50"
+            fontFamily='ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+            transform="rotate(2.88601 168.5 46.0061)"
+            fontSize="10"
+            textAnchor="center"
+            letterSpacing={-0.25}
+            fill="#3F3F45"
+          >
+            {speechText}
+          </text>
+        </g>
       </svg>
     </div>
   )
+}
+
+export const randomFromArray = (array: any) => {
+  return array[Math.floor(Math.random() * array.length)]
 }
