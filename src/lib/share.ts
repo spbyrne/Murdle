@@ -12,22 +12,25 @@ export const shareStatus = (guesses: string[], lost: boolean) => {
 }
 
 export const generateEmojiGrid = (guesses: string[], lost: boolean) => {
-  const array = guesses.reverse().map((guess) => {
-    const status = getGuessStatuses(guess)
-    return guess
-      .split('')
-      .map((letter, i) => {
-        switch (status[i]) {
-          case 'correct':
-            return '🟩'
-          case 'present':
-            return '🟨'
-          default:
-            return '⬛'
-        }
-      })
-      .join('')
-  })
+  const array = guesses
+    .slice()
+    .reverse()
+    .map((guess) => {
+      const status = getGuessStatuses(guess)
+      return guess
+        .split('')
+        .map((letter, i) => {
+          switch (status[i]) {
+            case 'correct':
+              return '🟩'
+            case 'present':
+              return '🟨'
+            default:
+              return '⬛'
+          }
+        })
+        .join('')
+    })
   if (lost) {
     array.push('💀💀💀💀💀')
   }

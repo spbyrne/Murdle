@@ -68,7 +68,9 @@ export const Keyboard = ({
 
   if (hide) {
     return (
-      <div className={`w-full max-w-prose mx-auto flex flex-col px-2 py-20`}>
+      <div
+        className={`w-full max-w-prose mx-auto flex flex-col px-2 pt-4 pb-20`}
+      >
         <Keyrow>
           {wrongLetters &&
             wrongLetters.map((letter) => {
