@@ -1,5 +1,21 @@
 import * as React from 'react'
 
+const transition = 'transition-all ease-out duration-[500ms]'
+
+const order = {
+  base: 0,
+  post: 1,
+  'top-beam': 2,
+  noose: 3,
+  head: 4,
+  torso: 5,
+  'left-arm': 6,
+  'right-arm': 7,
+  'left-leg': 8,
+  'right-leg': 9,
+  dead: 9,
+}
+
 export const Stage = ({ wrongLetters = '' }) => {
   const [displayedWrongLetters, setDisplayedWrongLetters] = React.useState(0)
 
@@ -29,21 +45,6 @@ export const Stage = ({ wrongLetters = '' }) => {
       }, Math.random() * 5000)
     }
   }, [displayedWrongLetters])
-
-  const transition = 'transition-all ease-out duration-[500ms]'
-  const order = {
-    base: 0,
-    post: 1,
-    'top-beam': 2,
-    noose: 3,
-    head: 4,
-    torso: 5,
-    'left-arm': 6,
-    'right-arm': 7,
-    'left-leg': 8,
-    'right-leg': 9,
-    dead: 9,
-  }
 
   return (
     <div className="sticky top-4 grow-0 shrink-0 w-[40%] max-w-[12rem] mx-auto p-1 mb-2 pointer-events-none">
