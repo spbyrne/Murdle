@@ -23,7 +23,6 @@ import {
 import { FaInfoCircle, FaSkull } from 'react-icons/fa'
 
 import './App.css'
-import { Healthbar } from './components/murdle/Healthbar'
 import { Stage } from './components/murdle/Stage'
 
 const ALERT_TIME_MS = 3000

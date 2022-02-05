@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { CharStatus } from '../../lib/statuses'
 import classnames from 'classnames'
-import { FaSkullCrossbones } from 'react-icons/fa'
-import { GiLeak, GiHastyGrave } from 'react-icons/gi'
-import { RiKnifeBloodFill } from 'react-icons/ri'
 
 type Props = {
   value?: string

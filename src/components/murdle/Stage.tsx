@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Healthbar } from './Healthbar'
 
 export const Stage = ({ wrongLetters = '' }) => {
   const [displayedWrongLetters, setDisplayedWrongLetters] = React.useState(0)
