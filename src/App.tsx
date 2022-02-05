@@ -24,6 +24,7 @@ import { FaInfoCircle, FaSkull } from 'react-icons/fa'
 
 import './App.css'
 import { Stage } from './components/murdle/Stage'
+import { Healthbar } from './components/murdle/Healthbar'
 
 const ALERT_TIME_MS = 3000
 
@@ -152,39 +153,42 @@ function App() {
   }
 
   return (
-    <div className="fixed overflow-y-auto bg-black top-0 left-0 w-full h-full mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
-      <div className="sticky top-0 flex-grow-0 flex gap-3 w-full max-w-prose mx-auto items-center p-4 -mb-6">
-        <button
-          className="group bg-transparent cursor-pointer border-0 outline-none flex items-center opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 text-zinc-200 active:opacity-100 transition ease-out duration-150"
-          onClick={() => setIsAboutModalOpen(true)}
-        >
-          <FaSkull className="w-6 h-6 mr-2" />
-          <h1 className="text-base font-bold opacity-70 tracking-widest">
-            {GAME_TITLE}
-          </h1>
-        </button>
-        <span className="flex-1"></span>
-        <button
-          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
-          onClick={() => setIsInfoModalOpen(true)}
-        >
-          <FaInfoCircle className="h-6 w-6 text-zinc-400" />
-        </button>
-        <button
-          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
-          onClick={() => setIsStatsModalOpen(true)}
-        >
-          <RiBarChart2Fill className="h-6 w-6 text-zinc-400" />
-        </button>
+    <div className="fixed grid grid-rows-[1fr_auto] grid-cols-1 bg-black top-0 left-0 w-full h-full font-mono font-extrabold">
+      <div className="w-full flex flex-col justify-between overflow-y-auto mx-auto sm:px-6 lg:px-8">
+        <div className="sticky flex-shrink-0 flex-grow-0 top-0 h-12 bg-black/70 flex-grow-0 flex gap-3 w-full max-w-prose mx-auto items-center px-4 z-[1000]">
+          <button
+            className="group bg-transparent cursor-pointer border-0 outline-none flex items-center opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 text-zinc-200 active:opacity-100 transition ease-out duration-150"
+            onClick={() => setIsAboutModalOpen(true)}
+          >
+            <FaSkull className="w-6 h-6 mr-2" />
+            <h1 className="text-base font-bold opacity-70 tracking-widest">
+              {GAME_TITLE}
+            </h1>
+          </button>
+          <span className="flex-1"></span>
+          <button
+            className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
+            onClick={() => setIsInfoModalOpen(true)}
+          >
+            <FaInfoCircle className="h-6 w-6 text-zinc-400" />
+          </button>
+          <button
+            className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
+            onClick={() => setIsStatsModalOpen(true)}
+          >
+            <RiBarChart2Fill className="h-6 w-6 text-zinc-400" />
+          </button>
+        </div>
+        <Stage wrongLetters={wrongLetters} />
+        <Healthbar wrongLetters={wrongLetters.length} />
+        <Grid
+          dead={wrongLetters.length > 9}
+          guesses={guesses}
+          currentGuess={currentGuess}
+          showNewLine={!isGameWon && !isGameLost}
+          wrongLetters={wrongLetters}
+        />
       </div>
-      <Stage wrongLetters={wrongLetters} />
-      <Grid
-        dead={wrongLetters.length > 9}
-        guesses={guesses}
-        currentGuess={currentGuess}
-        showNewLine={!isGameWon && !isGameLost}
-        wrongLetters={wrongLetters}
-      />
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}

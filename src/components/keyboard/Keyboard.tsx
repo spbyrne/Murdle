@@ -80,47 +80,49 @@ export const Keyboard = ({
   }
 
   return (
-    <div
-      className={`sticky bottom-0 mx-auto bg-gradient-to-t from-black to-black/80 w-full max-w-[42rem] flex flex-col px-1 py-2 sm:p-2 md:p-4`}
-    >
-      <Keyrow>
-        <Key value="Q" onClick={onClick} status={charStatuses['Q']} />
-        <Key value="W" onClick={onClick} status={charStatuses['W']} />
-        <Key value="E" onClick={onClick} status={charStatuses['E']} />
-        <Key value="R" onClick={onClick} status={charStatuses['R']} />
-        <Key value="T" onClick={onClick} status={charStatuses['T']} />
-        <Key value="Y" onClick={onClick} status={charStatuses['Y']} />
-        <Key value="U" onClick={onClick} status={charStatuses['U']} />
-        <Key value="I" onClick={onClick} status={charStatuses['I']} />
-        <Key value="O" onClick={onClick} status={charStatuses['O']} />
-        <Key value="P" onClick={onClick} status={charStatuses['P']} />
-      </Keyrow>
-      <Keyrow padding="px-[5%]">
-        <Key value="A" onClick={onClick} status={charStatuses['A']} />
-        <Key value="S" onClick={onClick} status={charStatuses['S']} />
-        <Key value="D" onClick={onClick} status={charStatuses['D']} />
-        <Key value="F" onClick={onClick} status={charStatuses['F']} />
-        <Key value="G" onClick={onClick} status={charStatuses['G']} />
-        <Key value="H" onClick={onClick} status={charStatuses['H']} />
-        <Key value="J" onClick={onClick} status={charStatuses['J']} />
-        <Key value="K" onClick={onClick} status={charStatuses['K']} />
-        <Key value="L" onClick={onClick} status={charStatuses['L']} />
-      </Keyrow>
-      <Keyrow padding="px-[1%]">
-        <Key value="ENTER" onClick={onClick}>
-          {ENTER_TEXT}
-        </Key>
-        <Key value="Z" onClick={onClick} status={charStatuses['Z']} />
-        <Key value="X" onClick={onClick} status={charStatuses['X']} />
-        <Key value="C" onClick={onClick} status={charStatuses['C']} />
-        <Key value="V" onClick={onClick} status={charStatuses['V']} />
-        <Key value="B" onClick={onClick} status={charStatuses['B']} />
-        <Key value="N" onClick={onClick} status={charStatuses['N']} />
-        <Key value="M" onClick={onClick} status={charStatuses['M']} />
-        <Key value="DELETE" onClick={onClick}>
-          {DELETE_TEXT}
-        </Key>
-      </Keyrow>
+    <div className="w-full bg-gradient-to-b from-zinc-900 to-black shadow-xl">
+      <div
+        className={`mx-auto w-full max-w-[40rem] flex flex-col px-1 py-2 sm:p-2 md:p-4`}
+      >
+        <Keyrow>
+          <Key value="Q" onClick={onClick} status={charStatuses['Q']} />
+          <Key value="W" onClick={onClick} status={charStatuses['W']} />
+          <Key value="E" onClick={onClick} status={charStatuses['E']} />
+          <Key value="R" onClick={onClick} status={charStatuses['R']} />
+          <Key value="T" onClick={onClick} status={charStatuses['T']} />
+          <Key value="Y" onClick={onClick} status={charStatuses['Y']} />
+          <Key value="U" onClick={onClick} status={charStatuses['U']} />
+          <Key value="I" onClick={onClick} status={charStatuses['I']} />
+          <Key value="O" onClick={onClick} status={charStatuses['O']} />
+          <Key value="P" onClick={onClick} status={charStatuses['P']} />
+        </Keyrow>
+        <Keyrow padding="px-[5%]">
+          <Key value="A" onClick={onClick} status={charStatuses['A']} />
+          <Key value="S" onClick={onClick} status={charStatuses['S']} />
+          <Key value="D" onClick={onClick} status={charStatuses['D']} />
+          <Key value="F" onClick={onClick} status={charStatuses['F']} />
+          <Key value="G" onClick={onClick} status={charStatuses['G']} />
+          <Key value="H" onClick={onClick} status={charStatuses['H']} />
+          <Key value="J" onClick={onClick} status={charStatuses['J']} />
+          <Key value="K" onClick={onClick} status={charStatuses['K']} />
+          <Key value="L" onClick={onClick} status={charStatuses['L']} />
+        </Keyrow>
+        <Keyrow padding="px-[1%]">
+          <Key value="ENTER" onClick={onClick}>
+            {ENTER_TEXT}
+          </Key>
+          <Key value="Z" onClick={onClick} status={charStatuses['Z']} />
+          <Key value="X" onClick={onClick} status={charStatuses['X']} />
+          <Key value="C" onClick={onClick} status={charStatuses['C']} />
+          <Key value="V" onClick={onClick} status={charStatuses['V']} />
+          <Key value="B" onClick={onClick} status={charStatuses['B']} />
+          <Key value="N" onClick={onClick} status={charStatuses['N']} />
+          <Key value="M" onClick={onClick} status={charStatuses['M']} />
+          <Key value="DELETE" onClick={onClick}>
+            {DELETE_TEXT}
+          </Key>
+        </Keyrow>
+      </div>
     </div>
   )
 }

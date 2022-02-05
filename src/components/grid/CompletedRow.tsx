@@ -15,7 +15,7 @@ export const CompletedRow = ({ index, guess, wrongLetters = '' }: Props) => {
     <div
       key={index}
       className="flex justify-center"
-      style={{ opacity: 1 - 0.2 * index }}
+      style={{ opacity: 1 - easeOutQuad(0.15 * index) }}
     >
       {guess.split('').map((letter, i) => (
         <Cell
@@ -28,4 +28,8 @@ export const CompletedRow = ({ index, guess, wrongLetters = '' }: Props) => {
       ))}
     </div>
   )
+}
+
+const easeOutQuad = (t: number) => {
+  return t * (2 - t)
 }
