@@ -155,23 +155,23 @@ function App() {
     <div className="fixed overflow-y-auto bg-black top-0 left-0 w-full h-full mx-auto sm:px-6 lg:px-8 flex flex-col justify-between font-mono font-extrabold">
       <div className="sticky top-0 flex-grow-0 flex gap-3 w-full max-w-prose mx-auto items-center p-4 -mb-6">
         <button
-          className="bg-transparent cursor-pointer border-0 outline-none flex items-center opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
+          className="group bg-transparent cursor-pointer border-0 outline-none flex items-center opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 text-zinc-200 active:opacity-100 transition ease-out duration-150"
           onClick={() => setIsAboutModalOpen(true)}
         >
-          <FaSkull className="text-zinc-200 w-6 h-6 mr-2" />
-          <h1 className="text-base font-bold text-zinc-400 tracking-widest">
+          <FaSkull className="w-6 h-6 mr-2" />
+          <h1 className="text-base font-bold opacity-70 tracking-widest">
             {GAME_TITLE}
           </h1>
         </button>
         <span className="flex-1"></span>
         <button
-          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
+          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
           onClick={() => setIsInfoModalOpen(true)}
         >
           <FaInfoCircle className="h-6 w-6 text-zinc-400" />
         </button>
         <button
-          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-150"
+          className="bg-transparent cursor-pointer border-0 outline-none opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 active:opacity-100 transition ease-out duration-150"
           onClick={() => setIsStatsModalOpen(true)}
         >
           <RiBarChart2Fill className="h-6 w-6 text-zinc-400" />
