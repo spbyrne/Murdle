@@ -23,6 +23,7 @@
 
 .pop-in-animation {
   animation: popInKeyframes ease-out;
+  animation-fill-mode: both;
   animation-duration: 0.3s;
 }
 
