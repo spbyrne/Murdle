@@ -47,7 +47,7 @@ export const Stage = ({ wrongLetters = '' }) => {
   }, [displayedWrongLetters])
 
   return (
-    <div className="sticky top-4 grow-0 shrink-0 w-[40%] max-w-[12rem] mx-auto p-1 mb-2 pointer-events-none">
+    <div className="sticky top-4 grow-0 shrink-0 w-[35%] sm:w-[40%] max-w-[12rem] mx-auto p-1 mb-2 pointer-events-none">
       <svg
         className="w-full h-auto overflow-visible"
         viewBox="0 0 160 200"
