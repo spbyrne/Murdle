@@ -11,7 +11,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
     <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-lg text-zinc-500 dark:text-zinc-300">
         You can guess as many words as you want... but if you get 10 unique
-        letters wrong, you loses. After each guess, the color of the tiles will
+        letters wrong, you die. After each guess, the color of the tiles will
         change to show how close your guess was to the word. You only lose a
         life the first time you guess a letter that's not in the word.
       </p>
