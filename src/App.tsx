@@ -47,7 +47,7 @@ function App() {
     if (gameWasWon) {
       setIsGameWon(true)
     }
-    if (loaded.wrongLetters.length > 9 && !gameWasWon) {
+    if (loaded.wrongLetters && loaded.wrongLetters.length > 9 && !gameWasWon) {
       setIsGameLost(true)
     }
     return loaded.guesses
