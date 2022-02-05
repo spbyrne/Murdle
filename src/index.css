@@ -20,3 +20,39 @@
     transform: scale(1);
   }
 }
+
+.pop-in-animation {
+  animation: popInKeyframes ease-out;
+  animation-duration: 0.3s;
+}
+
+@keyframes popInKeyframes {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-animation {
+  animation: blinkKeyframes ease-in-out infinite;
+  animation-duration: 1.5s;
+}
+
+@keyframes blinkKeyframes {
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+}

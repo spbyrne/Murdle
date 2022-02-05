@@ -5,7 +5,7 @@ type Props = {
   dead?: boolean
 }
 
-export const CurrentRow = ({ dead = false, guess }: Props) => {
+export const CurrentRow = ({ dead = false, guess = '' }: Props) => {
   const splitGuess = guess.split('')
   const emptyCells = Array.from(Array(5 - splitGuess.length))
 
@@ -15,7 +15,7 @@ export const CurrentRow = ({ dead = false, guess }: Props) => {
         <Cell key={i} value={letter} />
       ))}
       {emptyCells.map((_, i) => (
-        <Cell dead={dead} key={i} />
+        <Cell current={i === 0} dead={dead} key={i} />
       ))}
     </div>
   )

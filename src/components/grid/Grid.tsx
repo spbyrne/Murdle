@@ -1,25 +1,28 @@
+import { Healthbar } from '../murdle/Healthbar'
 import { CompletedRow } from './CompletedRow'
 import { CurrentRow } from './CurrentRow'
-import { EmptyRow } from './EmptyRow'
 
 type Props = {
+  showNewLine: boolean
   guesses: string[]
   currentGuess: string
   dead?: boolean
+  wrongLetters: string
 }
 
-export const Grid = ({ dead = false, guesses, currentGuess }: Props) => {
-  const empties =
-    guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
-
+export const Grid = ({
+  showNewLine,
+  dead = false,
+  guesses,
+  currentGuess,
+  wrongLetters,
+}: Props) => {
   return (
-    <div className="w-3/4 sm:w-[80%] max-w-sm mx-auto flex flex-col">
+    <div className="sticky top-0 bg-gradient-to-t from-black via-black to-black/50 flex-1 w-[90%] sm:w-[75%] max-w-[24rem] md:max-w-[30rem] mx-auto flex flex-col justify-start mb-4">
+      <Healthbar wrongLetters={wrongLetters.length} />
+      {showNewLine && <CurrentRow dead={dead} guess={currentGuess} />}
       {guesses.map((guess, i) => (
-        <CompletedRow key={i} guess={guess} />
-      ))}
-      {guesses.length < 6 && <CurrentRow dead={dead} guess={currentGuess} />}
-      {empties.map((_, i) => (
-        <EmptyRow dead={dead} key={i} />
+        <CompletedRow index={i} guess={guess} wrongLetters={wrongLetters} />
       ))}
     </div>
   )

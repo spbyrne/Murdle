@@ -81,7 +81,7 @@ export const Keyboard = ({
 
   return (
     <div
-      className={`w-full max-w-prose mx-auto flex flex-col px-1 py-2 sm:p-2 md:p-4`}
+      className={`sticky bottom-0 mx-auto bg-gradient-to-t from-black to-black/80 w-full max-w-[42rem] flex flex-col px-1 py-2 sm:p-2 md:p-4`}
     >
       <Keyrow>
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} />
