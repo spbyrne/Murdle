@@ -10,7 +10,7 @@ export const shareStatus = (guesses: string[], lost: boolean) => {
 }
 
 export const generateEmojiGrid = (guesses: string[], lost: boolean) => {
-  const array = guesses.map((guess) => {
+  const array = guesses.reverse().map((guess) => {
     const status = getGuessStatuses(guess)
     return guess
       .split('')
@@ -30,5 +30,5 @@ export const generateEmojiGrid = (guesses: string[], lost: boolean) => {
     array.push('💀💀💀💀💀')
   }
 
-  return array.join('\n')
+  return array.reverse().join('\n')
 }
