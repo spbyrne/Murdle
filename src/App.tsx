@@ -155,7 +155,7 @@ function App() {
   return (
     <div className="fixed grid grid-rows-[1fr_auto] grid-cols-1 bg-black top-0 left-0 w-full h-full font-mono font-extrabold">
       <div className="w-full flex flex-col justify-between overflow-y-auto mx-auto sm:px-6 lg:px-8">
-        <div className="sticky flex-shrink-0 flex-grow-0 top-0 h-12 bg-black/70 flex-grow-0 flex gap-3 w-full max-w-prose mx-auto items-center px-4 z-[1000]">
+        <div className="sticky flex-shrink-0 top-0 h-12 bg-black/70 flex-grow-0 flex gap-3 w-full max-w-prose mx-auto items-center px-4 z-[1000]">
           <button
             className="group bg-transparent cursor-pointer border-0 outline-none flex items-center opacity-30 hover:opacity-70 focus:opacity-70 active:text-rose-500 text-zinc-200 active:opacity-100 transition ease-out duration-150"
             onClick={() => setIsAboutModalOpen(true)}
