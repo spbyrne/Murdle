@@ -16,7 +16,13 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         >
           this fantastic open source word guessing game
         </a>
-        , which is built with React, Typescript, and Tailwind.
+        , which is built with React, Typescript, and Tailwind.{' '}
+        <a
+          href="https://github.com/spbyrne/Murdle"
+          className="underline font-bold"
+        >
+          View Murdle's source on GitHub.
+        </a>
       </p>
     </BaseModal>
   )
