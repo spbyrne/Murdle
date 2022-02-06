@@ -17,7 +17,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
         className="fixed z-10 inset-0 overflow-y-auto"
         onClose={handleClose}
       >
-        <div className="flex items-center justify-center min-h-screen py-10 px-4 text-center sm:block sm:p-0">
+        <div className="flex items-center justify-center min-h-screen p-6 sm:p-8">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -46,7 +46,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6 bg-zinc-900">
+            <div className="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all border-2 border-black sm:my-8 sm:align-middle sm:max-w-lg lg:max-w-xl sm:w-full p-6 sm:p-10 bg-zinc-900">
               <button
                 className="bg-transparent border-0 outline-none opacity-30 hover:opacity-70 active:opacity-100 transition ease-out duration-15 absolute right-4 top-4"
                 onClick={() => handleClose()}

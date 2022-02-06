@@ -82,7 +82,7 @@ export const Keyboard = ({
   }
 
   return (
-    <div className="w-full bg-gradient-to-b from-zinc-900 to-black shadow-xl">
+    <div className="w-full bg-gradient-to-b from-zinc-900 to-black shadow-xl border-t-2 border-black">
       <div
         className={`mx-auto w-full max-w-[40rem] flex flex-col px-1 py-2 sm:p-2 md:p-4`}
       >
