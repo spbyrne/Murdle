@@ -15,14 +15,16 @@ export const Healthbar = ({ wrongLetters = 0 }) => {
             />
           )
         })}
-        {Array.from(Array(10 - wrongLetters).keys()).map((index) => {
-          return (
-            <AiFillHeart
-              className={`pop-in-animation w-full h-auto text-rose-800 `}
-              style={{ animationDelay: `${1.2 - index * 0.1}s` }}
-            />
-          )
-        })}
+        {Array.from(Array(Math.max(0, 10 - wrongLetters)).keys()).map(
+          (index) => {
+            return (
+              <AiFillHeart
+                className={`pop-in-animation w-full h-auto text-rose-800 `}
+                style={{ animationDelay: `${1.2 - index * 0.1}s` }}
+              />
+            )
+          }
+        )}
       </div>
     </div>
   )
