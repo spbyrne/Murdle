@@ -2,7 +2,11 @@ import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
-export const shareStatus = (guesses: string[], wrongLetters: string, lost: boolean) => {
+export const shareStatus = (
+  guesses: string[],
+  wrongLetters: string,
+  lost: boolean
+) => {
   navigator.clipboard.writeText(
     `💀${GAME_TITLE} #${solutionIndex} ${
       lost ? 'X/' + guesses.length : '- ' + guesses.length
@@ -14,7 +18,9 @@ export const generateLivesEmoji = (wrongLetters: string) => {
   const livesLost = wrongLetters.length
   const livesLeft = 10 - livesLost
 
-  const livesArray = new Array(livesLeft).fill('❤️').concat(new Array(livesLost).fill('💀'))
+  const livesArray = new Array(livesLeft)
+    .fill('❤️')
+    .concat(new Array(livesLost).fill('💀'))
   livesArray.splice(5, 0, '\n')
   return livesArray.join('')
 }
@@ -39,7 +45,6 @@ export const generateEmojiGrid = (guesses: string[], wrongLetters: string) => {
         })
         .join('')
     })
-
 
   array.push(generateLivesEmoji(wrongLetters))
 
