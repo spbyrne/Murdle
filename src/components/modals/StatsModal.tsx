@@ -16,6 +16,7 @@ type Props = {
   isOpen: boolean
   handleClose: () => void
   guesses: string[]
+  wrongLetters: string
   gameStats: GameStats
   isGameLost: boolean
   isGameWon: boolean
@@ -26,6 +27,7 @@ export const StatsModal = ({
   isOpen,
   handleClose,
   guesses,
+  wrongLetters,
   gameStats,
   isGameLost,
   isGameWon,
@@ -67,7 +69,7 @@ export const StatsModal = ({
             type="button"
             className="w-full rounded-md border border-transparent shadow-sm px-4 py-3 bg-rose-700 text-base font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 sm:text-sm"
             onClick={() => {
-              shareStatus(guesses, isGameLost)
+              shareStatus(guesses, wrongLetters, isGameLost)
               handleShare()
             }}
           >

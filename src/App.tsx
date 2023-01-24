@@ -211,6 +211,7 @@ function App() {
         isOpen={isStatsModalOpen}
         handleClose={() => setIsStatsModalOpen(false)}
         guesses={guesses}
+        wrongLetters={wrongLetters}
         gameStats={stats}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
